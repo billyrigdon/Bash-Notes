@@ -1,9 +1,10 @@
 #!/bin/bash
+#create notes directory if it doesn't exist already
 if [ ! -d ~/.notes ]
 then
 	mkdir ~/.notes
 fi
-	
+#if called with no parameters. print the current date's note file if it exists	
 if [ "$#" -lt 1 ]; 
 then
 	if [ -e ~/.notes/`date +"%m-%d-%Y"`.txt ] 
@@ -12,6 +13,7 @@ then
 	else
 		echo "There are no notes for the current date. You can add notes with note <notes to add>"
 	fi
+#if called with '-d <number>', delete line number specified
 elif [ "$1" = "-d" ]
 then
 	if [ "$#" -gt 1 ]
@@ -25,6 +27,7 @@ then
 	else
 		echo "You need to specify which line(s) to delete"
 	fi
+#If called with '-ef' parameter, erase current date's file
 elif [ "$1" = "-ef" ]	
 then
 	if [ "$#" -lt 2 ]
@@ -36,7 +39,3 @@ then
 else
 	echo $@ >> ~/.notes/`date +"%m-%d-%Y"`.txt
 fi
-		#if [ "$1" = "-ef" ] 
-		#then
-		#	rm ~/.notes/`date +"%m-%d-%Y"`.txt
-		#else
