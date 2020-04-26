@@ -19,11 +19,11 @@ Calling it without any arguments will print the notes for the day in a numbered 
 
 You can call 'note \<notes to add\>' to add a note to the note file.
 
-You can also delete a specific line with note -d \<line number\> or erase the current date's note file with 'note -ef'
+You can also delete a specific line with 'note -d \<line number\>' or erase the current date's note file with 'note -ef'
 
 ```bash
 note #Prints all notes from the current date
-note This is a test note #Adds 'This is a test note' to the current date's note file
+note This is a note #Adds 'This is a note' to the current date's note file
 note -d 21 #Deletes line 21 from the current date's note file
 note -ef #Erases the current date's note file 
 ```
