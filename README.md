@@ -17,13 +17,17 @@ Bash Notes creates a note file named with the current date and saves them inside
 
 Calling it without any arguments will print the notes for the day in a numbered list. 
 
+Calling it with 'yesterday' or '-y' will print the previous day's note file
+
 You can call 'note \<notes to add\>' to add a note to the note file.
 
 You can also delete a specific line with 'note -d \<line number\>' or erase the current date's note file with 'note -ef'
 
 ```bash
 note #Prints all notes from the current date
+note -y #Prints yesterday's note file
 note This is a note #Adds 'This is a note' to the current date's note file
 note -d 21 #Deletes line 21 from the current date's note file
+note -d 1,7 #Deletes lines 1-7 of the current date's note file
 note -ef #Erases the current date's note file 
 ```
