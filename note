@@ -57,20 +57,38 @@ function add_note {
 	echo $@ >> ~/.notes/`date +"%m-%d-%Y"`.txt
 }
 
+function interactive_mode {
+	while [ $interactive_mode_on = true  ]
+	do
+		clear
+		print_note
+		read "$@" user_input 
+		bash_notes ${user_input[*]}
+	done
+}
 
+function bash_notes {
+	if [ "$#" -lt 1 ] || [ "$1" = "yesterday" ] || [ "$1" = "-y" ]
+	then
+		print_note "$@"
+	elif [ "$1" = "-d" ]
+	then
+		delete_note "$@"
+	elif [ "$1" = "-ef" ]	
+	then
+		erase_file "$@"
+	elif [ "$1" = "-i" ]
+	then
+		interactive_mode_on=true
+		interactive_mode
+	elif [ "$1" = "q" ]
+	then
+		interactive_mode_on=false	
+	else
+		add_note "$@"
+	fi
+}
 
 #Main Logic
 create_dir
-if [ "$#" -lt 1 ] || [ "$1" = "yesterday" ] || [ "$1" = "-y" ]
-then
-	print_note "$@"
-elif [ "$1" = "-d" ]
-then
-	delete_note "$@"
-elif [ "$1" = "-ef" ]	
-then
-	erase_file "$@"
-else
-	add_note "$@"
-fi
-
+bash_notes "$@"
