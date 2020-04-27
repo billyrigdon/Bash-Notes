@@ -57,6 +57,7 @@ function add_note {
 	echo $@ >> ~/.notes/`date +"%m-%d-%Y"`.txt
 }
 
+#Enter in notes in an interactive mode
 function interactive_mode {
 	while [ $interactive_mode_on = true  ]
 	do
@@ -66,7 +67,7 @@ function interactive_mode {
 		bash_notes ${user_input[*]}
 	done
 }
-
+#Main logic
 function bash_notes {
 	if [ "$#" -lt 1 ] || [ "$1" = "yesterday" ] || [ "$1" = "-y" ]
 	then
@@ -89,6 +90,6 @@ function bash_notes {
 	fi
 }
 
-#Main Logic
+
 create_dir
 bash_notes "$@"
